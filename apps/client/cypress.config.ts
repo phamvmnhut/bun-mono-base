@@ -1,8 +1,9 @@
-const { defineConfig } = require('cypress');
+// apps/client/cypress.config.ts
+import { defineConfig } from 'cypress';
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:8081', // Port mặc định của Expo Web
+    baseUrl: 'http://localhost:8081',
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/e2e.ts',
   },
