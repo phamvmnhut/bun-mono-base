@@ -1,0 +1,33 @@
+# Ignore all node_modules in any subdirectory
+/node_modules
+**/node_modules
+
+# Build outputs
+apps/client/dist
+apps/client/.expo
+coverage*
+
+# Docker-specific
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Git and IDE stuff
+.git
+.gitignore
+.vscode
+.idea
+
+# Docs and configs
+README.md
+LICENSE
+Makefile
+.env
+.env*
+.editorconfig
+**/.env
+**/.env*
+
+
+# Helm or infra config
+helm-charts

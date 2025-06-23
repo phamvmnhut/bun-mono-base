@@ -1,0 +1,24 @@
+{
+  "name": "mono",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev-client": "bun run --cwd ./apps/client/ dev",
+    "dev-server": "bun run --cwd ./apps/server/ dev",
+    "build-client": "bun run --cwd ./apps/client/ build:web",
+    "build-server": "bun run --cwd ./apps/server/ build",
+    "dev": "bun run scripts/run-dev.ts",
+    "run-test": "bun run --cwd ./apps/server/ test",
+    "run-server": "bun run --cwd ./apps/server/",
+    "run-client": "bun run --cwd ./apps/client/",
+    "start": "bun run --cwd ./apps/server/ full-start",
+    "cypress:open": "bun run --cwd ./apps/client/ cypress:open",
+    "cypress:run": "bun run --cwd ./apps/client/ cypress:run",
+    "test:e2e": "bun run --cwd ./apps/client/ test:web"
+  }
+}

@@ -1,0 +1,44 @@
+name: Test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.2.4
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build client
+        run: bun run-client build:web
+
+      - name: Run tests
+        run: bun run test:e2e
+
+      - name: Upload test results
+        if: always() # This ensures the artifacts are uploaded even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            apps/client/cypress/screenshots/
+            apps/client/cypress/videos/
+            apps/client/cypress/results/
+          retention-days: 14
+
+      - name: Test server
+        run: bun run-server test --coverage
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_TEST }}
